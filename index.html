@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="AutoCompleteApp">
+<head>
+    <meta charset="UTF-8">
+    <title>Auto Complete</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.9/angular.min.js"></script>
+    <script src="js/app.js"></script>
+    <script src="js/maincontroller.js"></script>
+    <script src="services/fruitservice.js"></script>
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body ng-controller="MainController">
+    <div class="container">
+        <h1>Auto Complete</h1>
+        <div>
+            <input type="text" id="fruit" ng-change="getMatchedFruits()" ng-model="searchInput" autocomplete="off" placeholder="Fruit Name...">
+           <button ng-click="updateRanking()">Search</button>
+        </div>
+
+        <div>
+            <table>
+                <tr ng-repeat="fruit in matchedFruits | orderBy: rank"><td>{{ fruit.fruit}}</td></tr>
+            </table>
+        </div>
+
+        <h3>For Test Cases Visit : <a href="test.html">Unit Test Report</a></h3>
+
+        <h3>Implementation Details</h3>
+        <ul>
+            <li>The comes with some predefined list of fruits</li>
+            <li>As user enters 3 or more characters the fruits comes in drop down menu filtered from the list</li>
+            <li>As user enters more characters the list become shorter</li>
+            <li>The list is ordered by POPULARITY of fruit</li>
+            <li>If the fruit is not present and user types fruit name and presses SEARCH button that fruit gets added to list of fruits</li>
+        </ul>
+        <h3>How To Check</h3>
+        <h4>Searching a Fruit</h4>
+        <ul>
+            <li>Type "ang"</li>
+            <li>Type "ango"</li>
+            <li>See the list shrinks down</li>
+        </ul>
+        <h4>Adding a Fruit</h4>
+        <ul>
+            <li>Type "Coconut"</li>
+            <li>Press SEARCH button</li>
+            <li>Type "nut"</li>
+            <li>Coconut comes in suggestion</li>
+        </ul>
+        <h4>Suggestions are based on POPULARITY of fruit</h4>
+        <ul>
+            <li>Type "erry"</li>
+            <li>The fruit Cherry comes in bottom</li>
+            <li>Type "Cherry"</li>
+            <li>Press SEARCH button</li>
+            <li>Type "erry"</li>
+            <li>The fruit Cherry comes on top becaused is it more searched as compared to others.</li>
+        </ul>
+        <h4>You can customize the inputs.</h4>
+        <hr/>
+        <div>
+            <p>Developed By: Rishi Katyal | katyal.r@husky.neu.edu</p>
+        </div>
+    </div>
+
+</body>
+</html>
